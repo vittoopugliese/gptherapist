@@ -1,0 +1,176 @@
+/* upgrade modal */
+.upgradeplan-container {
+  margin: 0em auto;
+  display: flex;
+  flex-direction: column;
+  width: 54%;
+  min-width: 690px;
+  max-width: 790px;
+  min-height: 365px;
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+  background-color: #171717;
+  border: 1px solid #282828;
+  border-radius: 0.74em;
+}
+
+.upgradeplan-container-bg {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-color: #00000074;
+  top: 0px;
+  left: 0px;
+}
+
+.upgradeplan-header {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  margin: 0em auto;
+  padding: 1em;
+}
+
+.upgradeplan-header p {
+  width: 60px;
+  text-align: center;
+}
+
+.upgradeplan-content {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  width: 100%;
+}
+
+.cross-close-modal {
+  width: 36px;
+  filter: invert(0.4);
+  rotate: 45deg;
+  cursor: pointer;
+}
+
+.plan-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 1em;
+  border: 1px solid #282828;
+  border-left: 1px;
+  border-right: 1px;
+  border-bottom: 0px;
+}
+.plan-container:nth-child(2) {
+  border: 1px solid #282828;
+  border-bottom: 0px;
+  border-right: 1px;
+}
+
+.plan-container button {
+  border-style: none;
+  border-radius: 0.3em;
+  padding: 1em;
+  font-size: 1.2em;
+  font-weight: bold;
+  margin: 0.4em 0em;
+  cursor: pointer;
+}
+.plan-container:nth-child(2) button {
+  background-color: rgb(240, 187, 89);
+  color: #181818;
+}
+
+.title-price-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 0.4em;
+}
+
+.plan-title,
+.plan-price {
+  font-size: 1.5em;
+  white-space: nowrap;
+}
+
+.plan-price {
+  font-size: 1.3em;
+  text-align: right;
+}
+
+.plan-price:nth-child(2) {
+  color: #949494;
+}
+
+.perk {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  flex-direction: row;
+  width: 100%;
+  margin: 0px auto;
+  margin: 0.2em 0em;
+  gap: 0.4em;
+  font-size: 0.9em;
+}
+
+.perk img {
+  width: 34px;
+  filter: invert(1);
+}
+.perk-color {
+  filter: invert(1) sepia(1) saturate(2) hue-rotate(-20deg) !important;
+}
+.perks-container {
+  display: flex;
+  flex-direction: column;
+  width: 98%;
+  margin: 0px auto;
+}
+
+.charge-credits p {
+  font-size: 0.8em;
+  text-align: right;
+  margin: 0.2em 0em;
+}
+
+a {
+  color: white;
+}
+
+/* medias */
+@media (max-width: 794px) {
+  .upgradeplan-header {
+    padding: 0.64em;
+  }
+  .upgradeplan-container {
+    min-width: 50%;
+    height: auto;
+  }
+  .upgradeplan-content {
+    flex-direction: column;
+  }
+
+  .plan-container button {
+    padding: 0.6em;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .plan-price,
+  .plan-title {
+    font-size: 1.2em;
+  }
+}
+@media (max-width: 594px) {
+  .upgradeplan-container {
+    min-width: 90%;
+  }
+}

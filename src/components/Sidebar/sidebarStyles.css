@@ -1,0 +1,266 @@
+.sidebar-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 275px;
+  height: 100vh;
+  background-color: #101010;
+}
+.sb-toggled {
+  width: 64px;
+}
+
+.chat-history {
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  margin: 0.6em auto;
+}
+
+.arrow-icon {
+  width: 16px;
+  filter: invert(0.54);
+  rotate: -90deg;
+  transition: all 0.2s cubic-bezier(0.39, 0.575, 0.565, 1);
+  cursor: pointer;
+}
+
+.ar-toggled {
+  rotate: 90deg;
+}
+
+.newConversation-image {
+  display: flex;
+  width: 32px;
+  filter: invert(0.8);
+}
+
+.history-container {
+  overflow: auto;
+  height: 100%;
+}
+
+.history-box {
+  width: 94%;
+  min-height: 44px !important;
+  height: 44px;
+  display: flex;
+  flex-direction: row;
+  gap: 0.6em;
+  padding: 0.6em;
+  margin: 0.4em auto;
+  border-radius: 12px;
+  cursor: pointer;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: clip;
+  transition: all 0.2s cubic-bezier(0.39, 0.575, 0.565, 1);
+  position: relative;
+}
+
+.addConver{
+  margin: 0em auto;
+}
+
+.hb-mini {
+  width: 74%;
+  justify-content: center;
+  align-items: center;
+}
+
+.history-box:hover {
+  background-color: #343434;
+}
+
+.history-box p {
+  word-break: break-all;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.94em;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  padding: 0.2em 0em;
+}
+
+.history-chatLogo {
+  width: 24px;
+  filter: invert(0.54);
+}
+
+.box-tools{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 1px;
+  margin-left: 12px;
+  flex-direction: row;
+  gap: 0.24em;
+  position: absolute;
+  padding: 0em 0.8em;
+  background-color: transparent;
+}
+
+.box-tools img{
+  width:1.4em;
+  filter: invert(0.5);
+  transition: all 0.2s cubic-bezier(0.39, 0.575, 0.565, 1);
+}
+
+.box-tools img:nth-child(2){
+  width: 1.25em;
+}
+
+.box-tools img:hover{
+  filter: invert(0.7);
+  scale: 1.14;
+}
+
+.history-edit-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 0.6em;
+  
+}
+
+.history-title-input{
+  border-radius: 6px;
+  border-style: none;
+  padding: 0.42em;
+  border: 1px solid #626262;
+}
+
+.history-title-accept{
+  width: 1.44em;
+  transition: all 0.2s cubic-bezier(0.39, 0.575, 0.565, 1);
+  filter: grayscale(1) invert(0.5) opacity(0.7);
+}
+.history-title-accept:hover{
+  width: 1.5em;
+  filter: grayscale(1) invert(0.6) opacity(0.84);
+}
+
+.box-selected{
+  width: 1em;
+  filter: invert(0.24);
+  position: absolute;
+  right: 0.54em;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.sidebar-footer {
+  width: 94%;
+  margin: 0em auto;
+}
+
+.upgrade-container,
+.user-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 0.4em 0em;
+  padding: 0.4em;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.39, 0.575, 0.565, 1);
+  user-select: none;
+}
+
+.upgrade-arrow {
+  width: 34px;
+  border-radius: 100%;
+  cursor: pointer;
+  filter: invert(0.8);
+}
+.upgrade-container p {
+  text-align: center;
+}
+
+.upgrade-new {
+  padding: 0.3em;
+  text-align: center;
+  width: 74px;
+  border-radius: 8px;
+  background-color: #ffd689;
+  color: #101010;
+  font-size: 0.8em;
+}
+
+.user-image {
+  width: 34px;
+  border-radius: 100%;
+  cursor: pointer;
+}
+
+.user-container p {
+  text-align: center;
+  white-space: nowrap;
+}
+
+.user-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+}
+.user-dots img {
+  width: 24px;
+  filter: invert(0.54);
+}
+
+.upgrade-container:hover,
+.user-container:hover {
+  background-color: #343434;
+}
+
+/* sidebarmini */
+
+.sb-mini-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 1em 0em 0.4em 0em;
+  gap: 12px;
+}
+
+.sb-mini-convs {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 0em auto;
+  height: 100%;
+}
+
+.sb-mini-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 0.2em 0em;
+}
+
+.user-picture-mini-cont,
+.upgrade-arrow-mini-cont {
+  cursor: pointer;
+  margin: 0px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 54px;
+  width: 54px;
+  border-radius: 100%;
+}
+
+.user-picture-mini-cont:hover,
+.upgrade-arrow-mini-cont:hover {
+  background-color: #343434;
+}
+
+.mini-hr {
+  width: 80%;
+}

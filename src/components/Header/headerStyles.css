@@ -1,0 +1,14 @@
+/* header */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: row;
+  background-color: #232323;
+  padding: 0.2em 1.2em;
+}
+
+header p {
+  text-align: right;
+  cursor: pointer;
+}
