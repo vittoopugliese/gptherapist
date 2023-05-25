@@ -14,13 +14,14 @@
   background-color: #171717;
   border: 1px solid #282828;
   border-radius: 0.74em;
+  filter: drop-shadow(4px 4px 20px rgba(255, 255, 255, 0.0954));
 }
 
 .upgradeplan-container-bg {
   position: absolute;
   width: 100vw;
   height: 100vh;
-  background-color: #00000074;
+  background-color: #00000094;
   top: 0px;
   left: 0px;
 }

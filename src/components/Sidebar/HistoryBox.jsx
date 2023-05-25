@@ -87,7 +87,7 @@ export const HistoryBox = ({cnv}) => {
         src={chatImageSource}
         style={{
           filter:
-            ( sidebarMini && !isConverSelected) ? "invert(0.4) drop-shadow(0px 0px 5px #a0a0a0)" : "",
+            ( sidebarMini && !isConverSelected) ? "invert(0.74) drop-shadow(0px 0px 5px #a0a0a0)" : "",
         }}
         className="history-chatLogo"
         onDoubleClick={

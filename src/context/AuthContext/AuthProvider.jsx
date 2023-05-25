@@ -1,21 +1,28 @@
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import {AuthContext} from "./AuthContext";
 
 // AuthProvider
-export const AuthProvider = ({children}) => {
+export const AuthProvider = ({children, conversations}) => {
+  const [isAuth, setIsAuth] = useState(true);
   const [user, setUser] = useState({
-    name: 'Vittorio',
-    username: 'vitto123',
-    avatar: '../../public/unknown.png'
-  })
-const [isAuth, setIsAuth] = useState(true)
+    name: "Vittorio",
+    username: "vitto123",
+    avatar: "../../public/unknown.png",
+    conversations: [],
+  });
 
+  // useEffect(() => {
+  //   setUser({...user, conversations: conversations});
+  //   console.log(user);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [conversations]);
 
-
-
-  return (<AuthContext.Provider value={{
-    user,
-  }}>
-    {children}
-    </AuthContext.Provider>);
+  return (
+    <AuthContext.Provider
+      value={{
+        user,
+      }}>
+      {children}
+    </AuthContext.Provider>
+  );
 };
