@@ -1,5 +1,6 @@
 import {useContext, useEffect, useRef, useState} from "react";
 import {AppContext} from "../../context/AppContext";
+import Swal from "sweetalert2";
 
 const chatImageSource = "https://www.svgrepo.com/show/510894/chat-remove.svg";
 const trashImage = "https://www.svgrepo.com/show/505791/trash-2.svg";
@@ -9,7 +10,14 @@ const selectedImageSource =
   "https://www.svgrepo.com/show/355189/radial-selected.svg";
 
 export const HistoryBox = ({cnv}) => {
-  const { state, dispatch, sidebarMini, isMobile, setConversationSelected, conversationSelected, } = useContext(AppContext);
+  const {
+    state,
+    dispatch,
+    sidebarMini,
+    isMobile,
+    setConversationSelected,
+    conversationSelected,
+  } = useContext(AppContext);
   const [isHovering, setIsHovering] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [isEditing, setIsEditing] = useState(false);
@@ -29,10 +37,23 @@ export const HistoryBox = ({cnv}) => {
   }
 
   function removeConversation(e) {
-    e.stopPropagation()
-    dispatch({type:'remove', payload: cnv.id})
-    setConversationSelected(null)
-    localStorage.removeItem("conversationSelected", JSON.stringify(cnv));
+    Swal.fire({
+      title: `Delete <b>${cnv.title}</b>?`,
+      text: "Cannot undo this action.",
+      showCancelButton: true,
+      confirmButtonText: "Yeah",
+      color: "#d4d4d4",
+      background: "#242424",
+      confirmButtonColor: "#747474",
+      cancelButtonColor: "#424242",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        e.stopPropagation();
+        dispatch({type: "remove", payload: cnv.id});
+        setConversationSelected(null);
+        localStorage.removeItem("conversationSelected", JSON.stringify(cnv));
+      }
+    });
   }
 
   function openTitleInput() {
@@ -56,35 +77,59 @@ export const HistoryBox = ({cnv}) => {
   }
 
   return (
-    <div onClick={selectedConver}
-      onMouseOver={() => setIsHovering(true)} onMouseOut={() => setIsHovering(false)}
+    <div
+      onClick={selectedConver}
+      onMouseOver={() => setIsHovering(true)}
+      onMouseOut={() => setIsHovering(false)}
       className={`history-box ${(sidebarMini || isMobile) && "hb-mini"}`}>
-
-      <img draggable={false} src={chatImageSource} 
-      style={{filter: (sidebarMini && !isConverSelected) && 'invert(0.84)'}}
-      className="history-chatLogo" />
+      <img
+        draggable={false}
+        src={chatImageSource}
+        style={{
+          filter:
+            ( sidebarMini && !isConverSelected) ? "invert(0.4) drop-shadow(0px 0px 5px #a0a0a0)" : "",
+        }}
+        className="history-chatLogo"
+        onDoubleClick={
+          (sidebarMini && isMobile) ? (e) => removeConversation(e) : undefined
+        }
+      />
       {!sidebarMini && !isMobile && !isEditing && <p>{cnv.title}</p>}
 
       {isEditing && (
         <div className="history-edit-container">
-          <input type="text" autoFocus onFocus={(e) => e.target.select()} value={inputValue} onChange={changeInput} 
-          onKeyDown={handleKeyDown} className="history-title-input" />
+          <input
+            type="text"
+            autoFocus
+            onFocus={(e) => e.target.select()}
+            value={inputValue}
+            onChange={changeInput}
+            onKeyDown={handleKeyDown}
+            className="history-title-input"
+          />
 
-          <img src={checkImage} alt="accept edit" onClick={editTitle} 
-          className="history-title-accept" />
+          <img
+            src={checkImage}
+            alt="accept edit"
+            onClick={editTitle}
+            className="history-title-accept"
+          />
         </div>
       )}
 
-      {(isHovering && !isEditing && !sidebarMini) && (
+      {isHovering && !isEditing && !sidebarMini && !isMobile && (
         <div className="box-tools">
           <img src={trashImage} alt="delete" onClick={removeConversation} />
           <img src={pencilImage} alt="edit" onClick={openTitleInput} />
         </div>
       )}
 
-      {(!isConverSelected && !isHovering && !sidebarMini) && (
-        <img src={selectedImageSource} alt="conversation selcted" 
-        className="box-selected" />
+      {!isConverSelected && !isHovering && !sidebarMini && !isMobile && (
+        <img
+          src={selectedImageSource}
+          alt="conversation selcted"
+          className="box-selected"
+        />
       )}
     </div>
   );

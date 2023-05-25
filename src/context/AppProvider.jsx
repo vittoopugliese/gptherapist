@@ -12,6 +12,7 @@ function initConverSelected() {
   const conversationSelected = JSON.parse(localStorage.getItem("conversationSelected"));
   return conversationSelected ? conversationSelected : null;
 }
+
 function initSidebar() {
   const sidebar = JSON.parse(localStorage.getItem("sidebarMini"));
   return sidebar ? sidebar : false;
@@ -37,7 +38,7 @@ export const AppProvider = ({children}) => {
 
   function setSidebarMiniFunc() {
     setSidebarMini((s) => (s = !s));
-    localStorage.setItem("sidebarMini", JSON.stringify(sidebarMini));
+    localStorage.setItem("sidebarMini", JSON.stringify(!sidebarMini));
   }
 
   function setPromptSelectedFunc(e) {

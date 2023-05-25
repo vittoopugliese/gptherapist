@@ -42,7 +42,7 @@ img {
 }
 
 h1 {
-  font-size: 1.8em;
+  font-size: 1.54em;
   white-space: nowrap;
 }
 
@@ -84,4 +84,12 @@ hr {
 
 /* mediaQuerys */
 @media (max-width: 794px) {
+}
+
+
+.swal2-html-container{
+  margin: 0.8em 0em 0.2em 0em !important;
+}
+b{
+  color: wheat !important;
 }

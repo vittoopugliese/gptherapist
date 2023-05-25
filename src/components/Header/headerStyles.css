@@ -11,4 +11,6 @@ header {
 header p {
   text-align: right;
   cursor: pointer;
+  white-space: nowrap;
+  margin: 0em .2em;
 }

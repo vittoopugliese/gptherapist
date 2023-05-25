@@ -60,12 +60,12 @@ export const AddConverButton = () => {
       className={`history-box addConver ${ (sidebarMini || isMobile) && "hb-mini" }`}
       onMouseOver={() => setIsHovering(true)}
       onMouseOut={() => setIsHovering(false)}
-      onDoubleClick={sidebarMini ? ((e) => handleConversations(e, 'remove_all')) : undefined}>
-      <img draggable={false} className="history-chatLogo" src={imageSource} />
+      onDoubleClick={(sidebarMini && isMobile) ? ((e) => handleConversations(e, 'remove_all')) : undefined}>
+      <img draggable={false} className="history-chatLogo" src={imageSource} style={{scale:'1.24'}}/>
 
-      {isHovering && !sidebarMini && (
+      {(isHovering && !sidebarMini && !isMobile && state.conversations.length > 0) && (
         <div className="box-tools">
-          <img src={trashImage} alt="delete"  style={{marginRight: "6px"}} 
+          <img src={trashImage} alt="delete" style={{marginRight: "6px"}} 
           onClick={(e) => handleConversations(e, "remove_all")} />
         </div>
       )}

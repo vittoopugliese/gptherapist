@@ -2,8 +2,9 @@ import {useContext, useEffect} from "react";
 import {AppContext} from "../../context/AppContext";
 
 export const PromptSelector = () => {
-  const {promptSelected, setPromptSelectedFunc, showPromptSelector} = useContext(AppContext);
-  
+  const {promptSelected, setPromptSelectedFunc, showPromptSelector} =
+    useContext(AppContext);
+
   return (
     <>
       {showPromptSelector && (

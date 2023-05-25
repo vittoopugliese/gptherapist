@@ -1,13 +1,14 @@
 import React, {useContext} from "react";
 import {AppContext} from "./../../context/AppContext";
 import {SidebarConversations} from "./SidebarConversations";
+import { AuthContext } from "../../context/AuthContext/AuthContext";
 
 const arrowSource = "https://www.svgrepo.com/show/511476/arrow-up-362.svg";
-const userImageSource = "../../unknown.png";
 const upgradeImageSource = "https://www.svgrepo.com/show/341247/upgrade.svg";
 
 export const SidebarMini = () => {
   const {setSidebarMiniFunc, isMobile, setShowUpgradeModal} = useContext(AppContext);
+  const {user} = useContext(AuthContext)
 
   return (
     <div className="sidebar-container sb-toggled">
@@ -31,14 +32,10 @@ export const SidebarMini = () => {
       <div className="sb-mini-footer">
         <hr className="mini-hr" />
         <div className="upgrade-arrow-mini-cont" onClick={() => setShowUpgradeModal(s => !s)}>
-          <img
-            src={upgradeImageSource}
-            className="upgrade-arrow"
-            draggable={false}
-          />
+          <img src={upgradeImageSource} className="upgrade-arrow" draggable={false} />
         </div>
         <div className="user-picture-mini-cont">
-          <img src={userImageSource} className="user-image" draggable={false} />
+          <img src={user.avatar} className="user-image" draggable={false} />
         </div>
       </div>
     </div>

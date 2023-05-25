@@ -8,6 +8,30 @@
   flex-direction: column;
 }
 
+.conver-title{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  width: 90%;
+  margin: 0.2em  auto;
+}
+.conver-title h2{
+  display: flex;
+  justify-content:center;
+  margin: 0.2em  auto;
+}
+
+.chat-into-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  margin: 0em auto;
+  text-align: center;
+}
+
 .form {
   display: flex;
   justify-content: center;
@@ -63,7 +87,7 @@
   flex-direction: row;
   gap: 1.2em;
   margin: 0em 0em 1em 0em;
-  font-size: 1.05em;
+  font-size: 1.25em;
   position: relative;
   top: 2px;
 }
@@ -112,6 +136,14 @@
 }
 
 @media (max-width: 794px) {
+  .conversation-content {
+    padding: 0.2em 0.5em;
+  }
+  .message-container {
+    gap: 0.8em;
+    margin: 0em 0em 0.8em 0em;
+    font-size: 1.10em;
+  }
 }
 
 @media (max-width: 454px) {
@@ -120,6 +152,16 @@
   }
   .prompt-selector-container {
     width: max-content;
+  }
+  .conversation-content {
+    padding: 0.2em 0.1em;
+  }
+  .chatbox-container{
+    padding: 0em 0.1em;
+  }
+  .message-container {
+    gap: 0.6em;
+    font-size: 1em;
   }
 }
 
