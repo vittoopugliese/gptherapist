@@ -1,6 +1,6 @@
 import {useContext, useEffect, useRef, useState} from "react";
 import {AppContext} from "../../context/AppContext";
-import Swal from "sweetalert2";
+import { useAlert } from './../../hooks/useAlert';
 
 const chatImageSource = "https://www.svgrepo.com/show/510894/chat-remove.svg";
 const trashImage = "https://www.svgrepo.com/show/505791/trash-2.svg";
@@ -10,14 +10,7 @@ const selectedImageSource =
   "https://www.svgrepo.com/show/355189/radial-selected.svg";
 
 export const HistoryBox = ({cnv}) => {
-  const {
-    state,
-    dispatch,
-    sidebarMini,
-    isMobile,
-    setConversationSelected,
-    conversationSelected,
-  } = useContext(AppContext);
+  const { state, dispatch, sidebarMini, isMobile, setConversationSelected, conversationSelected, } = useContext(AppContext);
   const [isHovering, setIsHovering] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [isEditing, setIsEditing] = useState(false);
@@ -36,22 +29,23 @@ export const HistoryBox = ({cnv}) => {
     localStorage.setItem("conversationSelected", JSON.stringify(cnv));
   }
 
+  const {openAlert} = useAlert()
+
   function removeConversation(e) {
-    Swal.fire({
-      title: `Delete <b>${cnv.title}</b>?`,
+    let alertData = {
+      title: `Delete <b>${cnv.title}</b>?`, 
       text: "Cannot undo this action.",
-      showCancelButton: true,
-      confirmButtonText: "Yeah",
-      color: "#d4d4d4",
-      background: "#242424",
-      confirmButtonColor: "#747474",
-      cancelButtonColor: "#424242",
-    }).then((result) => {
+    }
+
+    openAlert(alertData).then((result) => {
       if (result.isConfirmed) {
         e.stopPropagation();
         dispatch({type: "remove", payload: cnv.id});
         setConversationSelected(null);
-        localStorage.removeItem("conversationSelected", JSON.stringify(cnv));
+        localStorage.removeItem("conversationSelected");
+        if(state.conversations.length == 1){
+          localStorage.removeItem("conversations");
+        }
       }
     });
   }
@@ -85,14 +79,9 @@ export const HistoryBox = ({cnv}) => {
       <img
         draggable={false}
         src={chatImageSource}
-        style={{
-          filter:
-            ( sidebarMini && !isConverSelected) ? "invert(0.74) drop-shadow(0px 0px 5px #a0a0a0)" : "",
-        }}
+        style={{ filter: sidebarMini && !isConverSelected ? "invert(0.74) drop-shadow(0px 0px 5px #a0a0a0)" : "", }}
         className="history-chatLogo"
-        onDoubleClick={
-          (sidebarMini && isMobile) ? (e) => removeConversation(e) : undefined
-        }
+        onDoubleClick={sidebarMini ? (e) => removeConversation(e) : undefined}
       />
       {!sidebarMini && !isMobile && !isEditing && <p>{cnv.title}</p>}
 

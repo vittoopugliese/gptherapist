@@ -4,7 +4,7 @@ export const LoadingSpinner = () => {
       alt="preloadImg"
       draggable="false"
       className="loading-spinner"
-      src="../../spinner.svg"
+      src="spinner.svg"
     />
   );
 };

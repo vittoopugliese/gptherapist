@@ -7,14 +7,10 @@ export const appReducer = (state = {conversations: []}, action) => {
       };
 
     case "remove": {
-      let updatedConversations
-      if (state.conversations.length == 1) {
-        updatedConversations = []
-      } else {
-        updatedConversations = state.conversations.filter(
-          (item) => item.id !== action.payload
-        );
-      }
+      const updatedConversations = state.conversations.filter(
+        (item) => item.id !== action.payload
+      );
+
       return {
         ...state,
         conversations: updatedConversations,

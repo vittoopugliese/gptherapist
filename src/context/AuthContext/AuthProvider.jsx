@@ -7,7 +7,7 @@ export const AuthProvider = ({children, conversations}) => {
   const [user, setUser] = useState({
     name: "Vittorio",
     username: "vitto123",
-    avatar: "../../public/unknown.png",
+    avatar: "unknown.png",
     conversations: [],
   });
 
@@ -21,6 +21,7 @@ export const AuthProvider = ({children, conversations}) => {
     <AuthContext.Provider
       value={{
         user,
+        isAuth
       }}>
       {children}
     </AuthContext.Provider>

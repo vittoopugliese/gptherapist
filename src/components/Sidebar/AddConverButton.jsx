@@ -1,6 +1,7 @@
 import {useContext, useEffect, useState} from "react";
 import {AppContext} from "../../context/AppContext";
 import Swal from "sweetalert2";
+import { useAlert } from "../../hooks/useAlert";
 
 const imageSource = "https://www.svgrepo.com/show/510786/add-plus-circle.svg";
 const trashImage = "https://www.svgrepo.com/show/505791/trash-2.svg";
@@ -10,6 +11,7 @@ export const AddConverButton = () => {
     useContext(AppContext);
   const [converNumber, setConverNumber] = useState(1);
   const [isHovering, setIsHovering] = useState(false);
+  const {openAlert} = useAlert()
 
   useEffect(() => {
     setConverNumber(state.conversations.length + 1);
@@ -31,15 +33,11 @@ export const AddConverButton = () => {
       }
 
       case "remove_all": {
-        Swal.fire({
-          title: "Remove all conversations?",
-          showCancelButton: true,
-          confirmButtonText: "Yeah",
-          color: "#d4d4d4",
-          background: "#242424",
-          confirmButtonColor: "#747474",
-          cancelButtonColor: "#424242",
-        }).then((result) => {
+        let alertData = {
+          title: 'Remove all conversations?', 
+        }
+
+        openAlert(alertData).then(result => {
           if (result.isConfirmed) {
             dispatch({type: "remove_all"});
             localStorage.removeItem("conversations");
@@ -55,12 +53,18 @@ export const AddConverButton = () => {
     }
   }
 
+  function handleDoubleClick(e){
+    if(sidebarMini){
+      handleConversations(e, 'remove_all')
+    }
+  }
+
   return (
     <div onClick={(e) => handleConversations(e, "add")}
       className={`history-box addConver ${ (sidebarMini || isMobile) && "hb-mini" }`}
       onMouseOver={() => setIsHovering(true)}
       onMouseOut={() => setIsHovering(false)}
-      onDoubleClick={(sidebarMini && isMobile) ? ((e) => handleConversations(e, 'remove_all')) : undefined}>
+      onDoubleClick={(e) => handleDoubleClick(e)}>
       <img draggable={false} className="history-chatLogo" src={imageSource} style={{scale:'1.24'}}/>
 
       {(isHovering && !sidebarMini && !isMobile && state.conversations.length > 0) && (

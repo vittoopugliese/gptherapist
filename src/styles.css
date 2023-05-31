@@ -86,10 +86,64 @@ hr {
 @media (max-width: 794px) {
 }
 
-
-.swal2-html-container{
+.swal2-html-container {
   margin: 0.8em 0em 0.2em 0em !important;
 }
-b{
+b {
   color: wheat !important;
+}
+
+.landing-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+  padding: 0.74em 0em;
+}
+.navItems {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+a {
+  text-align: center;
+  text-decoration: none;
+}
+.sideIcon {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.sideIcon img {
+  cursor: pointer;
+  width: 2.2em;
+  filter: invert(1);
+}
+
+
+.main-header{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  text-align: center;
+  padding: 1em 0.4em;
+  margin: 1em 0em;
+}
+.main-header h2{
+  font-size: 2.54em;
+}
+.main-header p{
+  font-size: 1.4em;
 }

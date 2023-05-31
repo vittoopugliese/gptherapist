@@ -2,15 +2,9 @@ import {usePrompt} from "../../hooks/usePrompt";
 import {useContext} from "react";
 import {AppContext} from "../../context/AppContext";
 
-export const Prompt = ({setUserMessageFirst, setFullMessage}) => {
+export const Prompt = ({setUserMessageFirst}) => {
   const {prompt, setUserMessage, userMessage} = usePrompt();
-  const {
-    dispatch,
-    setConversationSelected,
-    conversationSelected,
-    rememberConversations,
-    setRememberConversations,
-  } = useContext(AppContext);
+  const {dispatch, setConversationSelected, rememberConversations} = useContext(AppContext);
 
   async function promptTo(e) {
     e.preventDefault();
@@ -31,7 +25,6 @@ export const Prompt = ({setUserMessageFirst, setFullMessage}) => {
         type: "push_messages",
         payload: {conversationId: c.id, messages: messageRetrieved},
       });
-      // setFullMessage(messageRetrieved)
       return {
         ...c,
         content: [...c.content, messageRetrieved],
@@ -42,20 +35,11 @@ export const Prompt = ({setUserMessageFirst, setFullMessage}) => {
   return (
     <>
       <div style={{display: "flex", flexDirection: "column", gap: "1em"}}>
-
         <form className="form" onSubmit={promptTo}>
-          <input
-            onChange={(e) => setUserMessage(e.target.value)}
-            className="prompt-input"
-            placeholder="Tell me about yourself, how are you?"
-            value={userMessage}
-          />
-
+          <input onChange={(e) => setUserMessage(e.target.value)} className="prompt-input" 
+          placeholder="Tell me about yourself, how are you?" value={userMessage} />
           <button type="submit" className="prompt-button">
-            <img
-              src="https://www.svgrepo.com/show/510186/send-message.svg"
-              className="sendArrow"
-            />
+            <img src="https://www.svgrepo.com/show/510186/send-message.svg" className="sendArrow" />
           </button>
         </form>
       </div>

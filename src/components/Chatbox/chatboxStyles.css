@@ -1,6 +1,6 @@
 .chatpage-container {
   width: 94%;
-  height: calc(100vh - 100px);
+  height: calc(100vh - 54px);
   margin: 0px auto;
   display: flex;
   align-items: center;
@@ -25,11 +25,13 @@
 .chat-into-container{
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   flex-direction: column;
   width: 100%;
+  gap: 0.4em;
   margin: 0em auto;
   text-align: center;
+  height: 100%;
 }
 
 .form {
@@ -69,6 +71,7 @@
 .chatbox-container {
   overflow: auto;
   padding: 0.4em;
+  height: 100%;
 }
 
 /* messages */
@@ -113,6 +116,15 @@
 }
 
 /* prompt selector */
+
+.prompt-configs-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.54em;
+  margin: 1em 0em;
+}
 
 .prompt-selector-container {
   display: flex;
