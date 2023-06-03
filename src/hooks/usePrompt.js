@@ -3,7 +3,7 @@ import {useContext, useState} from "react";
 import {AppContext} from "../context/AppContext";
 import Swal from "sweetalert2";
 import promptForms from "../static/promptForms";
-import useAlert from "./useAlert";
+import {useAlert} from "./useAlert";
 import UseGetKey from "./useGetKey";
 
 let promptDate = new Date();

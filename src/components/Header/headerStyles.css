@@ -12,5 +12,7 @@ header p {
   text-align: right;
   cursor: pointer;
   white-space: nowrap;
-  margin: 0em .2em;
+  margin: 0em 0.2em;
+  user-select: none;
+  width: 125px;
 }

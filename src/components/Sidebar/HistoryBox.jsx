@@ -10,7 +10,7 @@ const selectedImageSource =
   "https://www.svgrepo.com/show/355189/radial-selected.svg";
 
 export const HistoryBox = ({cnv}) => {
-  const { state, dispatch, sidebarMini, isMobile, setConversationSelected, conversationSelected, } = useContext(AppContext);
+  const { state, dispatch, sidebarMini, isMobile, setConversationSelected, conversationSelected} = useContext(AppContext);
   const [isHovering, setIsHovering] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [isEditing, setIsEditing] = useState(false);
@@ -73,6 +73,7 @@ export const HistoryBox = ({cnv}) => {
   return (
     <div
       onClick={selectedConver}
+      onDoubleClick={sidebarMini ? (e) => removeConversation(e) : undefined}
       onMouseOver={() => setIsHovering(true)}
       onMouseOut={() => setIsHovering(false)}
       className={`history-box ${(sidebarMini || isMobile) && "hb-mini"}`}>
@@ -81,7 +82,6 @@ export const HistoryBox = ({cnv}) => {
         src={chatImageSource}
         style={{ filter: sidebarMini && !isConverSelected ? "invert(0.74) drop-shadow(0px 0px 5px #a0a0a0)" : "", }}
         className="history-chatLogo"
-        onDoubleClick={sidebarMini ? (e) => removeConversation(e) : undefined}
       />
       {!sidebarMini && !isMobile && !isEditing && <p>{cnv.title}</p>}
 
@@ -113,7 +113,7 @@ export const HistoryBox = ({cnv}) => {
         </div>
       )}
 
-      {!isConverSelected && !isHovering && !sidebarMini && !isMobile && (
+      {!isConverSelected && !isHovering && !sidebarMini && !isMobile && !isEditing && (
         <img
           src={selectedImageSource}
           alt="conversation selcted"
