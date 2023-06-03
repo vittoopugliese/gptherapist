@@ -1,0 +1,17 @@
+.page-load-content {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column-reverse;
+  text-align: center;
+  height: 100vh;
+}
+.page-load-content h1 {
+  font-size: 2em;
+  filter: drop-shadow(0px 0px 12px rgba(107, 107, 107, 0.54));
+}
+
+.loadem{
+  filter: drop-shadow(0px 0px 6px rgba(107, 107, 107, 0.24));
+}

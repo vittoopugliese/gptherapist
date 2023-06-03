@@ -22,7 +22,7 @@ export const Message = ({msg}) => {
             </div>
           ) : (
             <div className="message-spinner-container">
-              <LoadingSpinner />
+              <LoadingSpinner size='3.8'/>
             </div>
           )}
         </div>

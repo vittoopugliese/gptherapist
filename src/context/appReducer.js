@@ -42,6 +42,23 @@ export const appReducer = (state = {conversations: []}, action) => {
         conversations: updatedConversations,
       };
     }
+
+    case "reload_title": {
+      const currentConv = action.payload;
+
+      const newConvs = state.conversations.map(c => {
+        if (c.id === currentConv.id) {
+          c.title = currentConv.title;
+        }
+        return c
+      });
+
+      return {
+        ...state,
+        conversations: newConvs,
+      };
+    }
+
     default:
       return state;
   }

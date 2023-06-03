@@ -133,12 +133,11 @@
 }
 
 .history-title-accept{
-  width: 1.44em;
   transition: all 0.2s cubic-bezier(0.39, 0.575, 0.565, 1);
   filter: grayscale(1) invert(0.5) opacity(0.7);
+  cursor: pointer;
 }
 .history-title-accept:hover{
-  width: 1.5em;
   filter: grayscale(1) invert(0.6) opacity(0.84);
 }
 

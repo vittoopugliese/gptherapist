@@ -18,6 +18,8 @@ function initSidebar() {
   return sidebar ? sidebar : false;
 }
 
+
+
 // AppProvider
 export const AppProvider = ({children}) => {
   const [state, dispatch] = useReducer( appReducer, initConversations(), initConversations );
@@ -26,11 +28,13 @@ export const AppProvider = ({children}) => {
   const {isMobile} = useMedia();
   const [sidebarMini, setSidebarMini] = useState(initSidebar());
   const [showUpgradeModal, setShowUpgradeModal] = useState(false);
-
+  
   const [promptSelected, setPromptSelected] = useState("therapist");
   const [rememberConversations, setRememberConversations] = useState(false);
-
+  
   const [userTokens, setUserTokens] = useState(1000);
+
+  const [isLoading, setIsLoading] = useState(true);
 
   function setSidebarMiniFunc() {
     setSidebarMini((s) => (s = !s));
@@ -59,7 +63,7 @@ export const AppProvider = ({children}) => {
         userTokens,
         setUserTokens,
         rememberConversations,
-        setRememberConversations,
+        setRememberConversations,isLoading, setIsLoading
       }}>
       {children}
     </AppContext.Provider>
