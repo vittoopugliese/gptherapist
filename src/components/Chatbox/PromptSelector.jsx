@@ -12,8 +12,8 @@ export const PromptSelector = () => {
         <button className={`button-one ${ promptSelected == "code_expert" && "button-selected" }`} onClick={() => setPromptSelectedFunc("code_expert")}> code expert </button>
         <button className={`button-one ${ promptSelected == "none" && "button-selected" }`} onClick={() => setPromptSelectedFunc("none")}> none </button>
       </div>
-      <div className="prompt-selector-container">
-        <button className={`button-one ${ rememberConversations && "button-selected" }`} onClick={() => setRememberConversations(true)}> [beta] Remember Conversations! (expensive) </button>
+      <div className="prompt-selector-container ">
+        <button className={`button-one ${ rememberConversations && "button-selected" }`} onClick={() => setRememberConversations(true)}>Remember Chats! (expensive) </button>
         <button className={`button-one ${ !rememberConversations && "button-selected" }`} onClick={() => setRememberConversations(false)}> Dont rememeber anything. </button>
       </div>
     </div>

@@ -9,6 +9,7 @@ import { OnPageLoad } from "../components/Misc/OnPageLoad";
 import { AuthPage } from "../pages/AuthPage";
 import { HomePage } from "../pages/HomePage";
 import { Header } from "react-aria-components";
+import { ProfilePage } from "../pages/ProfilePage";
 
 export const AppRoutes = () => {
   const {state, sidebarMini, isMobile, showUpgradeModal, isLoading, setIsLoading} = useContext(AppContext);
@@ -31,6 +32,7 @@ export const AppRoutes = () => {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/chat" element={<ChatPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
           <Route path="/*" element={<Navigate to={"/"} />} />
         </Routes>
       </div>

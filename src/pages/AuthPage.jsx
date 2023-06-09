@@ -49,6 +49,12 @@ export const AuthPage = () => {
             </button>
           </div>
 
+          <div className="socialsLogin">
+            <button className="login-button" onClick={(e) => googleLogin(e)}>
+              <img src={googleLogo} alt="google login logo" draggable={false} />
+            </button>
+          </div>
+
           {isRegistering ? (
             <p onClick={() => setIsRegistering(false)}>
               Already registered? <b>Login...</b>
@@ -58,12 +64,6 @@ export const AuthPage = () => {
               Not signed? <b>Create account</b>
             </p>
           )}
-
-          <div className="socialsLogin">
-            <button className="login-button" onClick={(e) => googleLogin(e)}>
-              <img src={googleLogo} alt="google login logo" draggable={false} />
-            </button>
-          </div>
 
           currently only google regs/login is supported
         </form>

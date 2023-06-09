@@ -15,7 +15,13 @@
   flex-direction: row;
   width: 90%;
   margin: 0.6em auto;
+  transition: var(--transition1);
 }
+.chat-history h2{
+  user-select: none;
+}
+
+
 
 .arrow-icon {
   width: 16px;
@@ -256,6 +262,7 @@
   height: 54px;
   width: 54px;
   border-radius: 100%;
+  transition: var(--transition1);
 }
 
 .user-picture-mini-cont:hover,

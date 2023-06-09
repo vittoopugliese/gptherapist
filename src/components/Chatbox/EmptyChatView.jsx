@@ -5,7 +5,7 @@ export const EmptyChatView = () => {
   return (
     <div className="chat-into-container">
       <div>
-        <h1 style={{margin: "0.4em 0em"}}>Welcome to your therapist</h1>
+        <h1 className="welcomeh1" style={{margin: "0.4em 0em"}}>Welcome to your therapist</h1>
         <p>Enjoy talking with someone who really listens to you!</p>
       </div>
       <div>
