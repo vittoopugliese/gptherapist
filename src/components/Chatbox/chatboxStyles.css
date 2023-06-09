@@ -139,7 +139,7 @@
   padding: 12px;
   cursor: pointer;
   border-radius: 6px;
-  transition: all 0.2s cubic-bezier(0.39, 0.575, 0.565, 1);
+  transition: var(--transition1);
 }
 .button-selected {
   border: 2px solid #929292;

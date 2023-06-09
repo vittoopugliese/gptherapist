@@ -9,3 +9,6 @@ export const LoadingSpinner = ({size}) => {
     />
   );
 };
+
+// openai icon to message chat image
+// https://www.svgrepo.com/show/306500/openai.svg

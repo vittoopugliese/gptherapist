@@ -1,6 +1,7 @@
 import {useContext, useEffect, useRef, useState} from "react";
 import {AppContext} from "../../context/AppContext";
 import { useAlert } from './../../hooks/useAlert';
+import { useLocation, useNavigate } from "react-router-dom";
 
 const chatImageSource = "https://www.svgrepo.com/show/510894/chat-remove.svg";
 const trashImage = "https://www.svgrepo.com/show/505791/trash-2.svg";
@@ -8,7 +9,6 @@ const pencilImage = "https://www.svgrepo.com/show/500412/pencil.svg";
 const checkImage = "https://www.svgrepo.com/show/490996/check.svg";
 const selectedImageSource = "https://www.svgrepo.com/show/355189/radial-selected.svg";
 
-  // MASSIVE TODO:
 // refactor the title edit function implemented in
 // historybox and the chatbox title by moving
 // functions to a useEditTitle hook...
@@ -23,17 +23,26 @@ export const HistoryBox = ({cnv}) => {
   useEffect(() => {
     // please explain this !!!
     localStorage.setItem("conversationSelected", JSON.stringify(cnv));
-    localStorage.setItem("conversations", JSON.stringify(state.conversations));
+    localStorage.setItem("state", JSON.stringify(state));
     
     if (conversationSelected !== cnv) setIsConverSelected(true);
     return () => {
       if (conversationSelected !== cnv) setIsConverSelected(false);
     };
 
-  }, [state.conversations, isEditing, conversationSelected, cnv]);
+  }, [state, isEditing, conversationSelected, cnv]);
+
+
+  const location = useLocation()
+  const navigate = useNavigate()
 
   function selectedConver() {
-    setConversationSelected(cnv);
+    setConversationSelected(cnv)
+
+    if(location.url !== 'chat' ) {
+      navigate('chat')
+    }
+    
     localStorage.setItem("conversationSelected", JSON.stringify(cnv));
   }
 

@@ -21,10 +21,9 @@ export const Chatbox = () => {
     );
 
     setCurrentConversation(filteredConver);
-    localStorage.setItem("conversations", JSON.stringify(state.conversations));
+    localStorage.setItem("state", JSON.stringify(state));
   }, [state, conversationSelected]);
 
-  console.log(currentConversation);
   return (
     <>
       <div className="chatbox">

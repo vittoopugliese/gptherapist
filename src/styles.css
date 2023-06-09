@@ -12,6 +12,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+  --transition1: all 0.2s cubic-bezier(0.39, 0.575, 0.565, 1);
 }
 
 * {
@@ -130,8 +131,7 @@ a {
   filter: invert(1);
 }
 
-
-.main-header{
+.main-header {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -141,9 +141,86 @@ a {
   padding: 1em 0.4em;
   margin: 1em 0em;
 }
-.main-header h2{
-  font-size: 2.54em;
+
+.main-header h1 {
+  font-size: 1.8em;
 }
-.main-header p{
+.main-header p {
+  font-size: 1.2em;
+  width: 80%;
+}
+
+.start-chatting {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.54em;
+}
+.start-chatting p {
+  width: initial;
+}
+
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  text-align: center;
+  gap: 0.4em;
+}
+
+.auth-container form {
+  width: 84%;
+  margin: 0em auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.4em;
+}
+.auth-container form > input {
+  font-size: 1.8em;
+  padding: 0.3em;
+  border-radius: 0.3em;
+  border: none;
+  text-align: center;
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 0.54em;
+}
+.login-button {
   font-size: 1.4em;
+  border-radius: 0.3em;
+  padding: 0.3em;
+  cursor: pointer;
+  width: 100%;
 }
+.button-one img {
+  width: 1.6em;
+}
+
+.auth-container form > p > b {
+  cursor: pointer;
+}
+.auth-container form > p > b:hover {
+  font-style: italic;
+  color: white !important;
+}
+
+.socialsLogin {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+.socialsLogin .login-button{
+  scale: 0.8;
+  width: 30%;
+}
+

@@ -5,7 +5,7 @@ header {
   justify-content: space-around;
   flex-direction: row;
   background-color: #232323;
-  padding: 0.2em 1.2em;
+  padding: 0.54em 1.2em;
 }
 
 header p {
@@ -15,4 +15,7 @@ header p {
   margin: 0em 0.2em;
   user-select: none;
   width: 125px;
+}
+header h1 {
+  cursor: pointer;
 }

@@ -3,9 +3,10 @@ import {AppContext} from "./AppContext";
 import {appReducer} from "./appReducer";
 import {useMedia} from "../hooks/useMedia";
 
-function initConversations() {
-  const conversations = JSON.parse(localStorage.getItem("conversations"));
-  return {conversations: conversations ? conversations : []};
+function initState() {
+  const state = JSON.parse(localStorage.getItem("state"));
+  if(!state) return {conversations: [], user: {logged:false}}
+  return state
 }
 
 function initConverSelected() {
@@ -18,11 +19,9 @@ function initSidebar() {
   return sidebar ? sidebar : false;
 }
 
-
-
 // AppProvider
 export const AppProvider = ({children}) => {
-  const [state, dispatch] = useReducer( appReducer, initConversations(), initConversations );
+  const [state, dispatch] = useReducer( appReducer, initState(), initState );
   const [conversationSelected, setConversationSelected] = useState(initConverSelected);
 
   const {isMobile} = useMedia();

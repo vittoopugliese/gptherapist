@@ -6,8 +6,8 @@ export const Chat = ({currentConversation}) => {
   const {conversationSelected, state} = useContext(AppContext);
 
   useEffect(() => {
-    localStorage.setItem("conversations", JSON.stringify(state.conversations));
-  }, [conversationSelected, state.conversations, currentConversation]);
+    localStorage.setItem("state", JSON.stringify(state));
+  }, [conversationSelected, state, currentConversation]);
 
   return (
     <div className="messages-container">

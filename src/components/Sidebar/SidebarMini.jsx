@@ -1,15 +1,28 @@
-import React, {useContext} from "react";
+import {useContext, useEffect, useState} from "react";
 import {AppContext} from "./../../context/AppContext";
 import {SidebarConversations} from "./SidebarConversations";
-import { AuthContext } from "../../context/AuthContext/AuthContext";
 
 const arrowSource = "https://www.svgrepo.com/show/511476/arrow-up-362.svg";
 const upgradeImageSource = "https://www.svgrepo.com/show/341247/upgrade.svg";
 
 export const SidebarMini = () => {
-  const {setSidebarMiniFunc, isMobile, setShowUpgradeModal} = useContext(AppContext);
-  const {user} = useContext(AuthContext)
+  const {state, dispatch, setSidebarMiniFunc, isMobile, setShowUpgradeModal, setConversationSelected} = useContext(AppContext);
+  const [userAvatar, setUserAvatar] = useState('./unknown.png')
+  const {user} = state
 
+  function logout() {
+    dispatch({type:'logout'})
+    setConversationSelected(null)
+    localStorage.removeItem('state')
+    localStorage.removeItem('conversationSelected')
+  }
+
+  useEffect(() => {
+    if (user.logged) {
+      setUserAvatar(user.photoURL)
+    }
+  }, [user])
+  
   return (
     <div className="sidebar-container sb-toggled">
       {!isMobile && (
@@ -35,7 +48,8 @@ export const SidebarMini = () => {
           <img src={upgradeImageSource} className="upgrade-arrow" draggable={false} />
         </div>
         <div className="user-picture-mini-cont">
-          <img src={user.avatar} className="user-image" draggable={false} />
+          <img src={userAvatar} onClick={logout}
+          className="user-image" draggable={false} />
         </div>
       </div>
     </div>

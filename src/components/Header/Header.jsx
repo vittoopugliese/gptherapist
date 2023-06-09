@@ -2,10 +2,11 @@ import {useContext} from "react";
 import {AppContext} from "../../context/AppContext";
 import "./headerStyles.css";
 import {useAlert} from "./../../hooks/useAlert";
+import { useNavigate } from "react-router-dom";
 
 export const Header = () => {
   const {userTokens} = useContext(AppContext);
-  const {openAlert} = useAlert();
+const {openAlert} = useAlert();
 
   function buyMoreTokens() {
     openAlert({
@@ -19,9 +20,11 @@ export const Header = () => {
     });
   }
 
+  const navigate = useNavigate()
+
   return (
     <header>
-      <h1>My Therapist</h1>
+      <h1 onClick={() => navigate('/')}>My Therapist</h1>
       <p onClick={buyMoreTokens}>{userTokens} 🌌</p>
     </header>
   );

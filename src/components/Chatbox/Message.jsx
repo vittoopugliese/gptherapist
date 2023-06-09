@@ -1,17 +1,18 @@
-import {useContext, useEffect} from "react";
+import {useContext} from "react";
 import {LoadingSpinner} from "./LoadingSpinner";
-import { AuthContext } from './../../context/AuthContext/AuthContext';
+import { AppContext } from "../../context/AppContext";
 
 const chatImage = "chatavatar.png";
 export const Message = ({msg}) => {
-  const {user} = useContext(AuthContext);
+  const {state} = useContext(AppContext)
+  const {user} = state
 
   return (
     <>
       { (Boolean(msg)) &&
         <div className="conversation-content">
           <div className="message-container">
-            <img className="message-image" src={user.avatar} alt={"chatImage"} draggable={false} />
+            <img className="message-image" src={user.photoURL} alt={"chatImage"} draggable={false} />
             <p>{msg.input}</p>
           </div>
 

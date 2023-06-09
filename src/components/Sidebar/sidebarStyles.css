@@ -21,7 +21,7 @@
   width: 16px;
   filter: invert(0.54);
   rotate: -90deg;
-  transition: all 0.2s cubic-bezier(0.39, 0.575, 0.565, 1);
+  transition: var(--transition1);
   cursor: pointer;
 }
 
@@ -54,7 +54,7 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: clip;
-  transition: all 0.2s cubic-bezier(0.39, 0.575, 0.565, 1);
+  transition: var(--transition1);
   position: relative;
 }
 
@@ -104,7 +104,8 @@
 .box-tools img{
   width:1.4em;
   filter: invert(0.5);
-  transition: all 0.2s cubic-bezier(0.39, 0.575, 0.565, 1);
+  transition: var(--transition1);
+
 }
 
 .box-tools img:nth-child(2){
@@ -133,7 +134,8 @@
 }
 
 .history-title-accept{
-  transition: all 0.2s cubic-bezier(0.39, 0.575, 0.565, 1);
+  transition: var(--transition1);
+
   filter: grayscale(1) invert(0.5) opacity(0.7);
   cursor: pointer;
 }
@@ -165,7 +167,8 @@
   padding: 0.4em;
   border-radius: 12px;
   cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.39, 0.575, 0.565, 1);
+  transition: var(--transition1);
+
   user-select: none;
 }
 

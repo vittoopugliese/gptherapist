@@ -1,6 +1,5 @@
 import {useContext, useEffect, useState} from "react";
 import { AppContext } from "../context/AppContext";
-import App from './../App';
 
 export function useEditTitle(cnv) {
   const {conversationSelected, state} = useContext(AppContext)

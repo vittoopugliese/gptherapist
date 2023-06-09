@@ -1,7 +1,7 @@
 import {useContext, useEffect, useState} from "react";
 import {AppContext} from "../../context/AppContext";
-import Swal from "sweetalert2";
 import { useAlert } from "../../hooks/useAlert";
+import { useDetectLocation } from '../../hooks/useDetectLocation';
 
 const imageSource = "https://www.svgrepo.com/show/510786/add-plus-circle.svg";
 const trashImage = "https://www.svgrepo.com/show/505791/trash-2.svg";
@@ -13,11 +13,15 @@ export const AddConverButton = () => {
   const [isHovering, setIsHovering] = useState(false);
   const {openAlert} = useAlert()
 
+  const {detectLocationOf} = useDetectLocation()
+
   useEffect(() => {
     setConverNumber(state.conversations.length + 1);
   }, [state.conversations]);
 
   function handleConversations(e, action) {
+    detectLocationOf('chat')
+
     e.stopPropagation();
     switch (action) {
       case "add": {
