@@ -1,4 +1,4 @@
-import {useContext} from "react";
+import {useContext, useEffect} from "react";
 import {AppContext} from "../../context/AppContext";
 import "./headerStyles.css";
 import {useAlert} from "./../../hooks/useAlert";
@@ -7,7 +7,7 @@ import { useDetectLocation } from './../../hooks/useDetectLocation';
 import { LoadingSpinner } from './../Chatbox/LoadingSpinner';
 
 export const Header = () => {
-  const {userTokens} = useContext(AppContext);
+  const {userTokens, setUserTokens} = useContext(AppContext);
   const {openAlert} = useAlert();
   const {navigate} = useDetectLocation()
 

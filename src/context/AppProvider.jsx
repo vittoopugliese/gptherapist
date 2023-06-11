@@ -6,7 +6,7 @@ import {getUserState, saveUserState} from "../firebase/providers";
 
 const emptyState = {
   conversations: [],
-  user: {logged: false, uid: null, tokens: 1000},
+  user: {logged: false, uid: null, tokens: null},
 };
 
 function initState() {
@@ -44,7 +44,7 @@ export const AppProvider = ({children}) => {
   const [promptSelected, setPromptSelected] = useState("therapist");
   const [rememberConversations, setRememberConversations] = useState(false);
 
-  const [userTokens, setUserTokens] = useState();
+  const [userTokens, setUserTokens] = useState(0);
 
   const [isLoading, setIsLoading] = useState(true);
 
@@ -75,12 +75,14 @@ export const AppProvider = ({children}) => {
         } else {
           console.error(response.error);
           setIntingConvers(false);
+          setUserTokens(1000)
         }
       });
       return;
     } else {
       setIntingConvers(false);
       console.error("no hay user state");
+      setUserTokens(1000)
     }
   }
 
