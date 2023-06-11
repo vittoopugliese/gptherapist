@@ -12,10 +12,7 @@ export const AuthPage = () => {
   async function googleLogin(e) {
     e.preventDefault();
     const user = await signInWithGoogle();
-
-    if (!user.ok) {
-      return;
-    }
+    if (!user.ok) return
 
     dispatch({type: "login", payload: user});
     initUserState()
