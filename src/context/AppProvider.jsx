@@ -80,9 +80,10 @@ export const AppProvider = ({children}) => {
         }
       });
       return;
+    } else {
+      setIntingConvers(false);
+      console.error("no hay user state");
     }
-    setIntingConvers(false);
-    console.error("no hay user state");
   }
 
   function removeAllConversAndSetNewState() {
