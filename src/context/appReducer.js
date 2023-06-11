@@ -1,4 +1,4 @@
-export const appReducer = (state = {conversations: [], user: {logged: false, uid:null, tokens:0}}, action) => {
+export const appReducer = (state = {conversations: [], user: {logged: false, uid:null, tokens:1000}}, action) => {
   switch (action.type) {
     case "login": {
       const {payload} = action;
@@ -79,6 +79,16 @@ export const appReducer = (state = {conversations: [], user: {logged: false, uid
       return {
         ...state,
         conversations: newConvs,
+      };
+    }
+
+    case "change_tokens": {
+      return {
+        conversations: state.conversations,
+        user: {
+          ...state.user,
+          tokens: action.payload
+        },
       };
     }
 

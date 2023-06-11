@@ -10,17 +10,9 @@ const emptyState = {
 };
 
 function initState() {
-  const localUid = JSON.parse(localStorage.getItem("localUid"));
-  if (localUid) {
-    getUserState(localUid).then((response) => {
-      if (response.ok) {
-        const {state} = response;
-        return state;
-      } else {
-        console.error(response.error);
-        return emptyState;
-      }
-    });
+  const localState = JSON.parse(localStorage.getItem("state"));
+  if (localState) {
+    return localState
   } else {
     return emptyState;
   }
@@ -40,7 +32,7 @@ function initSidebar() {
 
 // AppProvider
 export const AppProvider = ({children}) => {
-  const [state, dispatch] = useReducer(appReducer, emptyState, initState());
+  const [state, dispatch] = useReducer(appReducer, emptyState, initState);
   const [conversationSelected, setConversationSelected] =
     useState(initConverSelected);
   const [intingConvers, setIntingConvers] = useState(true);
@@ -73,6 +65,12 @@ export const AppProvider = ({children}) => {
         if (response.ok) {
           const {state} = response;
           dispatch({type: "init_state", payload: state});
+
+          if(state.user.tokens){
+            setUserTokens(state.user.tokens)
+          } else setUserTokens(1000)
+
+          localStorage.setItem('state', JSON.stringify(state))
           setIntingConvers(false);
         } else {
           console.error(response.error);
@@ -97,6 +95,7 @@ export const AppProvider = ({children}) => {
 
   function logOutAndRemoveState() {
     dispatch({type: "logout"});
+    setUserTokens(null)
     setConversationSelected(null);
     localStorage.removeItem("state");
     localStorage.removeItem("localUid");

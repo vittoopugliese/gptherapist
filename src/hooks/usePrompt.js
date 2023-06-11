@@ -10,12 +10,13 @@ let promptDate = new Date();
 
 export function usePrompt() {
   const [userMessage, setUserMessage] = useState("");
-  const {promptSelected, userTokens, setUserTokens, rememberConversations, conversationSelected} = useContext(AppContext);
+  const {promptSelected, userTokens, setUserTokens, rememberConversations, conversationSelected, dispatch} = useContext(AppContext);
   const {openAlert} = useAlert()
 
   async function prompt() {
     if (userTokens <= 0) {
       setUserTokens(0);
+      dispatch({type:'change_tokens', payload: 0})
       
       let alertData = {
         title: "You ran out of tokens!",
@@ -64,8 +65,10 @@ export function usePrompt() {
     }
 
     return await request.then((res) => {
-      setUserTokens((ut) => Math.max(ut - res.data.usage.total_tokens, 0));
-
+      const tokens = res.data.usage.total_tokens
+      setUserTokens((ut) => Math.max(ut - tokens, 0));
+      dispatch({type:'change_tokens', payload: userTokens - tokens})
+      
       const newMessage = {
         input: userMessage,
         output: res.data.choices[0].message.content,

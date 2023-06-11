@@ -30,9 +30,13 @@ export const ProfilePage = () => {
         <Header />
         <div className="profile-container">
           <div className="avatar-container">
-            <img src={user.photoURL} alt="user photo url" />
+            <img draggable='false'
+              style={{borderRadius: "100%"}}
+              src={user.photoURL}
+              alt="user photo url"
+            />
             <p
-              style={{fontSize: "0.6em", marginTop: "1em", cursor: "pointer"}}
+              style={{fontSize: "0.45em", cursor: "pointer", opacity:'50%'}}
               onClick={openChangeImage}>
               change image
             </p>
@@ -48,7 +52,11 @@ export const ProfilePage = () => {
             <button
               onClick={handleLogout}
               className="login-button"
-              style={{ width: "unset", fontSize: "0.64em", padding: "0.4em 0.8em", }}>
+              style={{
+                width: "unset",
+                fontSize: "0.64em",
+                padding: "0.4em 0.8em",
+              }}>
               Logout
             </button>
           </div>
