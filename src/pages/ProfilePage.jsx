@@ -6,8 +6,7 @@ import {useAlert} from "../hooks/useAlert";
 const noChats = <h2 style={{marginTop: "0.6em"}}>Start a new conversation!</h2>;
 
 export const ProfilePage = () => {
-  const {state, dispatch, userTokens, setConversationSelected} =
-    useContext(AppContext);
+  const {state, userTokens, logOutAndRemoveState} = useContext(AppContext);
   const {user} = state;
   const {openAlert} = useAlert();
 
@@ -15,18 +14,14 @@ export const ProfilePage = () => {
 
   function handleLogout() {
     openAlert({
-        title: "Logout",
-        text: "Its possible to (you will) loss data",
-        confirmText: "Logout",
-      })
-      .then((result) => {
-        if (result.isConfirmed) {
-          dispatch({type: "logout"});
-          setConversationSelected(null);
-          localStorage.removeItem("state");
-          localStorage.removeItem("conversationSelected");
-        }
-      });
+      title: "Logout",
+      text: "Its possible to (you will) loss data",
+      confirmText: "Logout",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        logOutAndRemoveState();
+      }
+    });
   }
 
   return (
@@ -53,7 +48,7 @@ export const ProfilePage = () => {
             <button
               onClick={handleLogout}
               className="login-button"
-              style={{width: "unset", fontSize: "0.64em", padding:'0.4em 0.8em'}}>
+              style={{ width: "unset", fontSize: "0.64em", padding: "0.4em 0.8em", }}>
               Logout
             </button>
           </div>

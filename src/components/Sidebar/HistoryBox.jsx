@@ -14,7 +14,8 @@ const selectedImageSource = "https://www.svgrepo.com/show/355189/radial-selected
 // functions to a useEditTitle hook...
 
 export const HistoryBox = ({cnv}) => {
-  const { state, dispatch, sidebarMini, isMobile, setConversationSelected, conversationSelected} = useContext(AppContext);
+  const { state, dispatch, sidebarMini, isMobile,
+  setConversationSelected, conversationSelected, removeAllConversAndSetNewState} = useContext(AppContext);
   const [isHovering, setIsHovering] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [isEditing, setIsEditing] = useState(false);
@@ -61,7 +62,7 @@ export const HistoryBox = ({cnv}) => {
         setConversationSelected(null);
         localStorage.removeItem("conversationSelected");
         if(state.conversations.length == 1){
-          localStorage.removeItem("conversations");
+          removeAllConversAndSetNewState()
         }
       }
     });

@@ -1,19 +1,37 @@
-import React, {useContext, useEffect} from "react";
+import {useContext, useEffect} from "react";
 import {AppContext} from "../../context/AppContext";
 import {HistoryBox} from "./HistoryBox";
-import { AddConverButton } from "./AddConverButton";
+import {AddConverButton} from "./AddConverButton";
+import {LoadingSpinner} from "./../Chatbox/LoadingSpinner";
 
 export const SidebarConversations = () => {
-  const {state} = useContext(AppContext);
+  const {state, intingConvers, initUserState} = useContext(AppContext);
   const {conversations} = state;
+
+  useEffect(() => {
+    initUserState()
+  }, []);
 
   return (
     <>
-      <AddConverButton />
+      {!intingConvers && <AddConverButton />}
+
       <div className="history-container">
-        {conversations.map((cnvstn) => (
-          <HistoryBox key={cnvstn.id} cnv={cnvstn} />
-        ))}
+        {intingConvers && (
+          <div className="loading-container">
+            <p>Loading Conversations</p>
+            <LoadingSpinner size={"4"} />
+          </div>
+        )}
+
+        {!intingConvers &&
+          conversations.map((cnvstn) => (
+            <HistoryBox key={cnvstn.id} cnv={cnvstn} />
+          ))}
+
+        {
+          (!intingConvers && conversations.length <= 0) && <p style={{textAlign:'center',marginTop:'1em', fontSize:'0.8em'}}>No conversations</p>
+        }
       </div>
     </>
   );

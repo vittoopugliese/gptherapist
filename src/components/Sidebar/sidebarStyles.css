@@ -273,3 +273,12 @@
 .mini-hr {
   width: 80%;
 }
+
+.loading-container{
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  text-align: center;
+  gap: 0.4em;
+  margin-top: 2em;
+}

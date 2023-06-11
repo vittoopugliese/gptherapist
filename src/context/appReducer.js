@@ -1,23 +1,27 @@
-export const appReducer = (state = {conversations: [], user: {logged:false}}, action) => {
+export const appReducer = (state = {conversations: [], user: {logged: false, uid:null, tokens:0}}, action) => {
   switch (action.type) {
-      case "login": {
-        const {payload} = action;
-        return {
-          conversations: state.conversations,
-          user: {
-            ...payload,
-            logged: true,
-          },
-        }
-      }
+    case "login": {
+      const {payload} = action;
+      return {
+        conversations: state.conversations,
+        user: {
+          ...payload,
+          logged: true,
+        },
+      };
+    }
+
+    case "init_state": {
+      return {
+        ...action.payload,
+      };
+    }
 
     case "logout":
       return {
         conversations: [],
-        user: {logged: false}
+        user: {logged: false, uid:null},
       };
-
-
 
     case "add":
       return {
@@ -65,11 +69,11 @@ export const appReducer = (state = {conversations: [], user: {logged:false}}, ac
     case "reload_title": {
       const currentConv = action.payload;
 
-      const newConvs = state.conversations.map(c => {
+      const newConvs = state.conversations.map((c) => {
         if (c.id === currentConv.id) {
           c.title = currentConv.title;
         }
-        return c
+        return c;
       });
 
       return {

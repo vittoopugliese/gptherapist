@@ -8,11 +8,9 @@ export const Message = ({msg}) => {
   const {user} = state
 
   function parseOutput(message){
-
     let outputArray = message.split('```')
     const parsedmsg = `${outputArray[0]} ${outputArray[1]} ${outputArray[2]} ${outputArray[3]} ${outputArray[4]}`
-
-    return parsedmsg
+    return parsedmsg.split('undefined')[0]
   }
 
   return (

@@ -31,11 +31,10 @@ export function usePrompt() {
       return null;
     }
 
-    let apikey = await UseGetKey();
+    const apikey = await UseGetKey();
     const openai = new OpenAIApi(new Configuration({apiKey: apikey}));
-    let finalPrompt = promptForms.find((p) => p.form == promptSelected).prompt;
-    // let maxTokens = (userTokens > 150) ? 150 : userTokens
-    let maxTokens = 100
+    const finalPrompt = promptForms.find((p) => p.form == promptSelected).prompt;
+    const maxTokens = (userTokens > 150) ? 150 : userTokens
     let request;
 
     if (!rememberConversations) {
@@ -67,11 +66,12 @@ export function usePrompt() {
     return await request.then((res) => {
       setUserTokens((ut) => Math.max(ut - res.data.usage.total_tokens, 0));
 
-      let newMessage = {
+      const newMessage = {
         input: userMessage,
         output: res.data.choices[0].message.content,
         id: promptDate.getTime(),
       };
+      
       return newMessage;
     });
   }

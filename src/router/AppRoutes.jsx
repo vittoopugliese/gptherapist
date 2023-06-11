@@ -12,11 +12,13 @@ import { Header } from "react-aria-components";
 import { ProfilePage } from "../pages/ProfilePage";
 
 export const AppRoutes = () => {
-  const {state, sidebarMini, isMobile, showUpgradeModal, isLoading, setIsLoading} = useContext(AppContext);
+  const {state, sidebarMini, isMobile, showUpgradeModal,
+    isLoading, setIsLoading, initUserState} = useContext(AppContext);
 
   useEffect(() => {
     // temporal fuck
-    setTimeout(()=>{ setIsLoading(false); }, 750)
+    initUserState()
+    setTimeout(()=>{ setIsLoading(false); }, 1250)
   }, []);
   
   return (

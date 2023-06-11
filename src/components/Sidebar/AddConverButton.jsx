@@ -7,8 +7,8 @@ const imageSource = "https://www.svgrepo.com/show/510786/add-plus-circle.svg";
 const trashImage = "https://www.svgrepo.com/show/505791/trash-2.svg";
 
 export const AddConverButton = () => {
-  const {state, dispatch, isMobile, setConversationSelected, sidebarMini} =
-    useContext(AppContext);
+  const {state, dispatch, isMobile, removeAllConversAndSetNewState,
+  setConversationSelected, sidebarMini} = useContext(AppContext);
   const [converNumber, setConverNumber] = useState(1);
   const [isHovering, setIsHovering] = useState(false);
   const {openAlert} = useAlert()
@@ -43,10 +43,7 @@ export const AddConverButton = () => {
 
         openAlert(alertData).then(result => {
           if (result.isConfirmed) {
-            dispatch({type: "remove_all"});
-            localStorage.removeItem("conversations");
-            localStorage.removeItem("conversationSelected");
-            setConversationSelected(null);
+            removeAllConversAndSetNewState()
           }
         });
         break;

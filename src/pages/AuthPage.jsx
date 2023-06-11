@@ -1,14 +1,12 @@
 import {useContext, useState} from "react";
 import {AppContext} from "../context/AppContext";
-import {useNavigate} from "react-router-dom";
 import {signInWithGoogle} from "../firebase/providers";
-import {useForm} from "../hooks/useForm";
 
 const googleLogo = "https://www.svgrepo.com/show/475656/google-color.svg";
 
 export const AuthPage = () => {
-  const {state, dispatch} = useContext(AppContext);
-  const {formState, onInputChange, onResetForm} = useForm();
+  const {state, dispatch, initUserState} = useContext(AppContext);
+  // const {formState, onInputChange, onResetForm} = useForm();
   const [isRegistering, setIsRegistering] = useState(true);
 
   async function googleLogin(e) {
@@ -20,11 +18,15 @@ export const AuthPage = () => {
     }
 
     dispatch({type: "login", payload: user});
+    initUserState()
+
     const updatedState = {
       conversations: state.conversations,
       user: {...user, logged: true},
     };
+
     localStorage.setItem("state", JSON.stringify(updatedState));
+    localStorage.setItem("localUid", JSON.stringify(user.uid));
   }
 
   async function createAccount(e) {
@@ -38,23 +40,19 @@ export const AuthPage = () => {
         <form>
           <input type="text" name="username" placeholder="username" />
           <input type="email" name="email" placeholder="email" />
-
           {isRegistering && (
             <input type="password" name="password" placeholder="password" />
           )}
-
           <div className="buttons-container">
             <button className="login-button" onClick={(e) => createAccount(e)}>
               {isRegistering ? "Create Account" : "Login"}
             </button>
           </div>
-
           <div className="socialsLogin">
             <button className="login-button" onClick={(e) => googleLogin(e)}>
               <img src={googleLogo} alt="google login logo" draggable={false} />
             </button>
           </div>
-
           {isRegistering ? (
             <p onClick={() => setIsRegistering(false)}>
               Already registered? <b>Login...</b>
@@ -64,7 +62,6 @@ export const AuthPage = () => {
               Not signed? <b>Create account</b>
             </p>
           )}
-
           currently only google regs/login is supported
         </form>
       </div>
