@@ -1,10 +1,9 @@
-import {useContext, useEffect} from "react";
+import {useContext} from "react";
 import {AppContext} from "../../context/AppContext";
-import "./headerStyles.css";
 import {useAlert} from "./../../hooks/useAlert";
-import {useNavigate} from "react-router-dom";
 import { useDetectLocation } from './../../hooks/useDetectLocation';
 import { LoadingSpinner } from './../Chatbox/LoadingSpinner';
+import "./headerStyles.css";
 
 export const Header = () => {
   const {userTokens, setUserTokens} = useContext(AppContext);
@@ -26,7 +25,7 @@ export const Header = () => {
   return (
     <header>
       <h1 onClick={() => navigate("/")}>My Therapist</h1>
-      {  userTokens
+      {  (userTokens || userTokens !== 0)
         ? <p onClick={buyMoreTokens}>{userTokens} 🌌</p>
         : <LoadingSpinner size={2} />
       }      

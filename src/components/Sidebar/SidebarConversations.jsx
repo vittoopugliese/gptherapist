@@ -5,11 +5,13 @@ import {AddConverButton} from "./AddConverButton";
 import {LoadingSpinner} from "./../Chatbox/LoadingSpinner";
 
 export const SidebarConversations = () => {
-  const {state, intingConvers, initUserState} = useContext(AppContext);
+  const {state, intingConvers, initUserState, isMobile, sidebarMini} = useContext(AppContext);
   const {conversations} = state;
 
   useEffect(() => {
-    initUserState()
+    if(!state){
+      initUserState(state.user.uid)
+    }
   }, []);
 
   return (
@@ -19,8 +21,8 @@ export const SidebarConversations = () => {
       <div className="history-container">
         {intingConvers && (
           <div className="loading-container">
-            <p>Loading Conversations</p>
-            <LoadingSpinner size={"4"} />
+            {!isMobile && <p>Loading Conversations</p>}
+            <LoadingSpinner mobile={isMobile} size={isMobile ? '2.6' : '4'} />
           </div>
         )}
 
@@ -28,9 +30,8 @@ export const SidebarConversations = () => {
           conversations.map((cnvstn) => (
             <HistoryBox key={cnvstn.id} cnv={cnvstn} />
           ))}
-
         {
-          (!intingConvers && conversations.length <= 0) && <p style={{textAlign:'center',marginTop:'1em', fontSize:'0.8em'}}>No conversations</p>
+          (!intingConvers && conversations.length <= 0) && <p style={{rotate: sidebarMini ? '90deg' : '0deg'}} className="no-conver-text" >No conversations</p>
         }
       </div>
     </>

@@ -1,10 +1,10 @@
-export const LoadingSpinner = ({size}) => {
+export const LoadingSpinner = ({size, mobile}) => {
   return (
     <img
       alt="preloadImg"
       draggable="false"
       className="loading-spinner"
-      style={{width:`${size}em`, height: `${size}em`}}
+      style={{width:`${size}em`, height: `${size}em`, left:mobile && '0px'}}
       src="spinner.svg"
     />
   );

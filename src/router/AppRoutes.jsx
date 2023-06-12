@@ -17,7 +17,10 @@ export const AppRoutes = () => {
 
   useEffect(() => {
     // temporal fuck
-    initUserState()
+    if(state){
+      initUserState(state.user.uid)
+    }
+    
     setTimeout(()=>{ setIsLoading(false) }, 1250)
   }, []);
   

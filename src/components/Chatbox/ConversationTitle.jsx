@@ -2,7 +2,7 @@ import React, {useContext, useEffect, useState} from "react";
 import {AppContext} from "../../context/AppContext";
 
 const checkImage = "https://www.svgrepo.com/show/490996/check.svg";
-// MASSIVE TODO:
+
 // refactor the title edit function implemented in
 // historybox and the chatbox title by moving
 // functions to a useEditTitle hook...
@@ -14,6 +14,7 @@ export const ConversationTitle = () => {
   useEffect(() => {
     localStorage.setItem("state", JSON.stringify(state));
     document.title = inputValue;
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state, conversationSelected]);
 
   function openTitleInput() {
@@ -25,7 +26,7 @@ export const ConversationTitle = () => {
     if (inputValue.length < 3) return;
     setIsEditing(false);
     conversationSelected.title = inputValue;
-    dispatch({type: "reload_title", payload: conversationSelected});
+    dispatch({type: "rel_title", payload: conversationSelected});
   }
 
   function changeInput(e) {

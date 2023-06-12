@@ -1,11 +1,13 @@
 import {useContext} from "react";
 import {LoadingSpinner} from "./LoadingSpinner";
 import { AppContext } from "../../context/AppContext";
+import { useDetectLocation } from "../../hooks/useDetectLocation";
 
 const chatImage = "chatavatar.png";
 export const Message = ({msg}) => {
   const {state} = useContext(AppContext)
   const {user} = state
+  const {navigate} = useDetectLocation()
 
   function parseOutput(message){
     let outputArray = message.split('```')
@@ -18,7 +20,9 @@ export const Message = ({msg}) => {
       { (Boolean(msg)) &&
         <div className="conversation-content">
           <div className="message-container">
-            <img className="message-image" src={user.photoURL} alt={"chatImage"} draggable={false} />
+            <img className="message-image" src={user.photoURL} style={{cursor:'pointer'}}
+            onClick={() => navigate('/profile')}
+            alt={"chatImage"} draggable={false} />
             <p>{msg.input}</p>
           </div>
 

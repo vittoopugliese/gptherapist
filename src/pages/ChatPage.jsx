@@ -10,7 +10,7 @@ export const ChatPage = () => {
   const {conversationSelected} = useContext(AppContext);
 
   useEffect(() => {
-    if (document.title) {
+    if (document.title && conversationSelected) {
       document.title = conversationSelected.title;
 
       return () => {

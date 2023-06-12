@@ -61,9 +61,9 @@ export const AppProvider = ({children}) => {
     localStorage.setItem("promptSelected", JSON.stringify(e));
   }
 
-  function initUserState() {
+  function initUserState(uid) {
     setIntingConvers(true);
-    if (state.user.uid) {
+    if (state.user.uid || uid) {
       getUserState(state.user.uid).then((response) => {
         if (response.ok) {
           const {state} = response;
@@ -74,17 +74,15 @@ export const AppProvider = ({children}) => {
           } else setUserTokens(1000);
 
           localStorage.setItem("state", JSON.stringify(state));
-          setIntingConvers(false);
         } else {
           console.error(response.error);
-          setIntingConvers(false);
           setUserTokens(1000);
         }
+        setIntingConvers(false);
       });
       return;
     } else {
       setIntingConvers(false);
-      console.error("no hay user state");
       setUserTokens(1000);
     }
   }
@@ -103,7 +101,6 @@ export const AppProvider = ({children}) => {
     setUserTokens(null);
     setConversationSelected(null);
     localStorage.removeItem("state");
-    localStorage.removeItem("localUid");
     localStorage.removeItem("conversationSelected");
     setIntingConvers(true);
   }

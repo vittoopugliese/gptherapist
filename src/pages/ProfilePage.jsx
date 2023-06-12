@@ -1,4 +1,4 @@
-import {useContext, useEffect} from "react";
+import {useContext} from "react";
 import {Header} from "../components/Header/Header";
 import {AppContext} from "../context/AppContext";
 import {useAlert} from "../hooks/useAlert";
@@ -9,8 +9,6 @@ export const ProfilePage = () => {
   const {state, userTokens, logOutAndRemoveState} = useContext(AppContext);
   const {user} = state;
   const {openAlert} = useAlert();
-
-  function openChangeImage() {}
 
   function handleLogout() {
     openAlert({
@@ -30,16 +28,12 @@ export const ProfilePage = () => {
         <Header />
         <div className="profile-container">
           <div className="avatar-container">
-            <img draggable='false'
+            <img
+              draggable="false"
               style={{borderRadius: "100%"}}
               src={user.photoURL}
               alt="user photo url"
             />
-            <p
-              style={{fontSize: "0.45em", cursor: "pointer", opacity:'50%'}}
-              onClick={openChangeImage}>
-              change image
-            </p>
           </div>
           <div className="info">
             <p>{user.displayName}</p>

@@ -96,7 +96,7 @@ export const HistoryBox = ({cnv}) => {
   return (
     <div
       onClick={selectedConver}
-      onDoubleClick={sidebarMini ? (e) => removeConversation(e) : undefined}
+      onDoubleClick={(e) => removeConversation(e)}
       onMouseOver={() => setIsHovering(true)}
       onMouseOut={() => setIsHovering(false)}
       className={`history-box ${(sidebarMini || isMobile) && "hb-mini"}`}>

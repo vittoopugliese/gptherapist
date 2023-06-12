@@ -66,7 +66,7 @@ export const appReducer = (state = {conversations: [], user: {logged: false, uid
       };
     }
 
-    case "reload_title": {
+    case "rel_title": {
       const currentConv = action.payload;
 
       const newConvs = state.conversations.map((c) => {
@@ -82,7 +82,7 @@ export const appReducer = (state = {conversations: [], user: {logged: false, uid
       };
     }
 
-    case "change_tokens": {
+    case "rel_tokens": {
       return {
         conversations: state.conversations,
         user: {

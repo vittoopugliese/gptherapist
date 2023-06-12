@@ -16,7 +16,7 @@ export function usePrompt() {
   async function prompt() {
     if (userTokens <= 0) {
       setUserTokens(0);
-      dispatch({type:'change_tokens', payload: 0})
+      dispatch({type:'rel_tokens', payload: 0})
       
       let alertData = {
         title: "You ran out of tokens!",
@@ -67,7 +67,7 @@ export function usePrompt() {
     return await request.then((res) => {
       const tokens = res.data.usage.total_tokens
       setUserTokens((ut) => Math.max(ut - tokens, 0));
-      dispatch({type:'change_tokens', payload: userTokens - tokens})
+      dispatch({type:'rel_tokens', payload: userTokens - tokens})
       
       const newMessage = {
         input: userMessage,
