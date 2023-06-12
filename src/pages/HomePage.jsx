@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import {Header} from "../components/Header/Header";
+import { AppContext } from "../context/AppContext";
 
 const arrowLeft = "https://www.svgrepo.com/show/507493/arrow-left-circle.svg";
 
 export const HomePage = () => {
+
+  const {addNewConversation} = useContext(AppContext)
   return (
     <div className="landing-container">
       <Header />
@@ -15,7 +18,7 @@ export const HomePage = () => {
             no time barriers.
           </p>
         </div>
-        <div className="start-chatting">
+        <div className="start-chatting" onClick={() => addNewConversation(':D')}>
           <img
             src={arrowLeft}
             alt="start chatting"

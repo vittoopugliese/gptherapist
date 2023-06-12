@@ -13,6 +13,7 @@ export const ConversationTitle = () => {
 
   useEffect(() => {
     localStorage.setItem("state", JSON.stringify(state));
+    document.title = inputValue;
   }, [state, conversationSelected]);
 
   function openTitleInput() {

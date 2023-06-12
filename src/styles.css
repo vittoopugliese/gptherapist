@@ -249,13 +249,12 @@ a {
   align-items: center;
   gap: 1em;
 }
-.credits p{
+.credits p {
   width: unset;
 }
 
-
 @media (max-width: 754px) {
-  .profile-container{
+  .profile-container {
     scale: 0.8;
   }
   .auth-container form {
@@ -264,10 +263,54 @@ a {
 }
 
 @media (max-width: 474px) {
-  .profile-container{
+  .profile-container {
     scale: 0.6;
   }
   .auth-container form {
     width: 96%;
   }
 }
+
+.start-chatting {
+  transition: var(--transition1);
+  width: 190px;
+  margin: 0em auto;
+  padding: 0.6em 0.9em;
+  border-radius: 0.5em;
+  border: 1px solid whitesmoke;
+  position: relative;
+  left: 0px;
+}
+
+.start-chatting:hover {
+  transition: var(--transition1);
+  background-color: #323232;
+  cursor: pointer;
+}
+
+.start-chatting:hover img {
+  transition: var(--transition1);
+  animation: border-animation 600ms infinite;
+  position: relative;
+}
+.start-chatting:hover img:hover {
+  animation: border-animation 150ms infinite;
+}
+
+.start-chatting img {
+  position: relative;
+  left: -10px;
+}
+
+@keyframes border-animation {
+  0% {
+    left: -10px;
+  }
+  50% {
+    left: 6px;
+  }
+  100% {
+    left: -10px;
+  }
+}
+

@@ -9,6 +9,18 @@ const noChats = <h2 style={{marginTop: "0.6em"}}>Start a new conversation!</h2>;
 export const ChatPage = () => {
   const {conversationSelected} = useContext(AppContext);
 
+  useEffect(() => {
+    if (document.title) {
+      document.title = conversationSelected.title;
+
+      return () => {
+        if (document.title !== conversationSelected.title) {
+          document.title = "GPTherapist";
+        }
+      };
+    }
+  }, [conversationSelected]);
+
   return (
     <>
       <div>

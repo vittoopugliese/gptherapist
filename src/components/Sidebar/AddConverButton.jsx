@@ -8,7 +8,7 @@ const trashImage = "https://www.svgrepo.com/show/505791/trash-2.svg";
 
 export const AddConverButton = () => {
   const {state, dispatch, isMobile, removeAllConversAndSetNewState,
-  setConversationSelected, sidebarMini} = useContext(AppContext);
+  setConversationSelected, sidebarMini, addNewConversation} = useContext(AppContext);
   const [converNumber, setConverNumber] = useState(1);
   const [isHovering, setIsHovering] = useState(false);
   const {openAlert} = useAlert()
@@ -25,14 +25,7 @@ export const AddConverButton = () => {
     e.stopPropagation();
     switch (action) {
       case "add": {
-        let date = new Date().getTime();
-        let conver = {
-          title: `New conversation ${converNumber}`,
-          id: date,
-          content: [],
-        };
-        dispatch({type: "add", payload: conver});
-        setConversationSelected(conver);
+        addNewConversation(converNumber)
         break;
       }
 

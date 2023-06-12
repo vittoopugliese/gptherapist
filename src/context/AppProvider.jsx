@@ -3,6 +3,7 @@ import {AppContext} from "./AppContext";
 import {appReducer} from "./appReducer";
 import {useMedia} from "../hooks/useMedia";
 import {getUserState, saveUserState} from "../firebase/providers";
+import {useDetectLocation} from "../hooks/useDetectLocation";
 
 const emptyState = {
   conversations: [],
@@ -12,7 +13,7 @@ const emptyState = {
 function initState() {
   const localState = JSON.parse(localStorage.getItem("state"));
   if (localState) {
-    return localState
+    return localState;
   } else {
     return emptyState;
   }
@@ -48,6 +49,8 @@ export const AppProvider = ({children}) => {
 
   const [isLoading, setIsLoading] = useState(true);
 
+  const {detectLocationOf, navigate} = useDetectLocation();
+
   function setSidebarMiniFunc() {
     setSidebarMini((s) => (s = !s));
     localStorage.setItem("sidebarMini", JSON.stringify(!sidebarMini));
@@ -66,23 +69,23 @@ export const AppProvider = ({children}) => {
           const {state} = response;
           dispatch({type: "init_state", payload: state});
 
-          if(state.user.tokens){
-            setUserTokens(state.user.tokens)
-          } else setUserTokens(1000)
+          if (state.user.tokens) {
+            setUserTokens(state.user.tokens);
+          } else setUserTokens(1000);
 
-          localStorage.setItem('state', JSON.stringify(state))
+          localStorage.setItem("state", JSON.stringify(state));
           setIntingConvers(false);
         } else {
           console.error(response.error);
           setIntingConvers(false);
-          setUserTokens(1000)
+          setUserTokens(1000);
         }
       });
       return;
     } else {
       setIntingConvers(false);
       console.error("no hay user state");
-      setUserTokens(1000)
+      setUserTokens(1000);
     }
   }
 
@@ -97,12 +100,25 @@ export const AppProvider = ({children}) => {
 
   function logOutAndRemoveState() {
     dispatch({type: "logout"});
-    setUserTokens(null)
+    setUserTokens(null);
     setConversationSelected(null);
     localStorage.removeItem("state");
     localStorage.removeItem("localUid");
     localStorage.removeItem("conversationSelected");
     setIntingConvers(true);
+  }
+
+  function addNewConversation(converNumber) {
+    let date = new Date().getTime();
+    let conver = {
+      title: `New conversation ${converNumber}`,
+      id: date,
+      content: [],
+    };
+    dispatch({type: "add", payload: conver});
+    setConversationSelected(conver);
+
+    detectLocationOf('/chat');
   }
 
   return (
@@ -130,6 +146,8 @@ export const AppProvider = ({children}) => {
         initUserState,
         removeAllConversAndSetNewState,
         logOutAndRemoveState,
+
+        addNewConversation,
       }}>
       {children}
     </AppContext.Provider>
