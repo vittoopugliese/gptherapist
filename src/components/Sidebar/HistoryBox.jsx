@@ -15,7 +15,8 @@ const selectedImageSource = "https://www.svgrepo.com/show/355189/radial-selected
 
 export const HistoryBox = ({cnv}) => {
   const { state, dispatch, sidebarMini, isMobile,
-  setConversationSelected, conversationSelected, removeAllConversAndSetNewState} = useContext(AppContext);
+  setConversationSelected, conversationSelected,
+   removeAllConversAndSetNewState, langSelected, promptSelected} = useContext(AppContext);
   const [isHovering, setIsHovering] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [isEditing, setIsEditing] = useState(false);
@@ -25,7 +26,7 @@ export const HistoryBox = ({cnv}) => {
     // please explain this !!!
     localStorage.setItem("conversationSelected", JSON.stringify(cnv));
     localStorage.setItem("state", JSON.stringify(state));
-    
+
     if (conversationSelected !== cnv) setIsConverSelected(true);
     return () => {
       if (conversationSelected !== cnv) setIsConverSelected(false);

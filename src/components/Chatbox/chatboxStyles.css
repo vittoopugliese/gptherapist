@@ -144,6 +144,23 @@
 .button-selected {
   border: 2px solid #929292;
 }
+.lang-selector {
+  display: flex;
+  gap: 1em;
+  margin: 1em 0em;
+  justify-content: center;
+}
+
+.flag {
+  padding: 0.4em;
+  cursor: pointer;
+  width: 6.4em;
+  height: 4.2em;
+}
+
+.flag img {
+  width: 3.6em;
+}
 
 @media (max-width: 794px) {
   .conversation-content {
@@ -205,7 +222,6 @@
     margin-left: -24px;
     scale: 0.8;
   }
-
 }
 
 @media (max-width: 324px) {

@@ -10,7 +10,8 @@ let promptDate = new Date();
 
 export function usePrompt() {
   const [userMessage, setUserMessage] = useState("");
-  const {promptSelected, userTokens, setUserTokens, rememberConversations, conversationSelected, dispatch} = useContext(AppContext);
+  const {promptSelected, userTokens, setUserTokens,
+  rememberConversations, conversationSelected, dispatch, langSelected} = useContext(AppContext);
   const {openAlert} = useAlert()
 
   async function prompt() {
@@ -34,7 +35,7 @@ export function usePrompt() {
 
     const apikey = await UseGetKey();
     const openai = new OpenAIApi(new Configuration({apiKey: apikey}));
-    const finalPrompt = promptForms.find((p) => p.form == promptSelected).prompt;
+    const finalPrompt = promptForms[langSelected].find((p) => p.form == promptSelected).prompt;
     const maxTokens = (userTokens > 150) ? 150 : userTokens
     let request;
 
@@ -53,8 +54,6 @@ export function usePrompt() {
       } else {
         allConversation = obtenerConversacion(conversationSelected.content)
       }
-
-      console.log(allConversation);
 
       request = openai.createChatCompletion({
         model: "gpt-3.5-turbo",

@@ -1,4 +1,4 @@
-import {useState, useReducer, useEffect} from "react";
+import {useState, useReducer} from "react";
 import {AppContext} from "./AppContext";
 import {appReducer} from "./appReducer";
 import {useMedia} from "../hooks/useMedia";
@@ -34,8 +34,7 @@ function initSidebar() {
 // AppProvider
 export const AppProvider = ({children}) => {
   const [state, dispatch] = useReducer(appReducer, emptyState, initState);
-  const [conversationSelected, setConversationSelected] =
-    useState(initConverSelected);
+  const [conversationSelected, setConversationSelected] = useState(initConverSelected);
   const [intingConvers, setIntingConvers] = useState(true);
 
   const {isMobile} = useMedia();
@@ -43,12 +42,13 @@ export const AppProvider = ({children}) => {
   const [showUpgradeModal, setShowUpgradeModal] = useState(false);
 
   const [promptSelected, setPromptSelected] = useState("therapist");
+  const [langSelected, setLangSelected] = useState('en');
   const [rememberConversations, setRememberConversations] = useState(false);
 
   const [userTokens, setUserTokens] = useState(0);
 
   const [isLoading, setIsLoading] = useState(true);
-
+  
   const {detectLocationOf, navigate} = useDetectLocation();
 
   function setSidebarMiniFunc() {
@@ -112,6 +112,7 @@ export const AppProvider = ({children}) => {
       id: date,
       content: [],
     };
+    
     dispatch({type: "add", payload: conver});
     setConversationSelected(conver);
 
@@ -145,6 +146,7 @@ export const AppProvider = ({children}) => {
         logOutAndRemoveState,
 
         addNewConversation,
+        langSelected, setLangSelected
       }}>
       {children}
     </AppContext.Provider>

@@ -7,8 +7,7 @@ const imageSource = "https://www.svgrepo.com/show/510786/add-plus-circle.svg";
 const trashImage = "https://www.svgrepo.com/show/505791/trash-2.svg";
 
 export const AddConverButton = () => {
-  const {state, dispatch, isMobile, removeAllConversAndSetNewState,
-  setConversationSelected, sidebarMini, addNewConversation} = useContext(AppContext);
+  const {state, isMobile, removeAllConversAndSetNewState, sidebarMini, addNewConversation} = useContext(AppContext);
   const [converNumber, setConverNumber] = useState(1);
   const [isHovering, setIsHovering] = useState(false);
   const {openAlert} = useAlert()
